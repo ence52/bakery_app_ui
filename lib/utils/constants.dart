@@ -9,7 +9,7 @@ const Color themeTextColor = Color.fromARGB(255, 255, 234, 198);
 const Color themeIconColor = Color.fromARGB(255, 240, 196, 123);
 
 //-----------------------------PADDING------------------------------------
-const defaultPadding = 30.0;
+const defaultPadding = 35.0;
 
 //-----------------------------BORDER RADIUS------------------------------------
 

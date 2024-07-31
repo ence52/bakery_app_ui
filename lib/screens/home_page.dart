@@ -1,3 +1,4 @@
+import 'package:bakery_app_ui/screens/product_view.dart';
 import 'package:bakery_app_ui/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,16 +9,21 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: CustomScrollView(
         slivers: <Widget>[
-          _AppBarSection(),
-          _SpecialOffersSection(),
-          _AdSection(),
-          _CategoriesSection(),
-          _CategoriesIconSection(),
-          _FeaturedProductsSection(),
-          _FeaturedProductsCardsSection(),
+          const _AppBarSection(),
+          const _SpecialOffersSection(),
+          const _AdSection(),
+          const _CategoriesSection(),
+          const _CategoriesIconSection(),
+          const _FeaturedProductsSection(),
+          const _FeaturedProductsCardsSection(),
+          SliverToBoxAdapter(
+            child: SizedBox(
+              height: 10.h,
+            ),
+          ),
         ],
       ),
     );
@@ -74,113 +80,124 @@ class _ProductCard extends StatelessWidget {
   final double price;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(bottom: 2.h),
-      decoration: BoxDecoration(boxShadow: [
-        BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            spreadRadius: 2,
-            blurRadius: 50)
-      ]),
-      margin: EdgeInsets.only(right: 5.w),
-      child: AspectRatio(
-        aspectRatio: 1.6,
-        child: Stack(
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius:
-                      BorderRadius.circular(defaultBorderRadiusCircular)),
-              child: Column(
-                children: [
-                  Expanded(
-                    flex: 5,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          image: DecorationImage(
-                              fit: BoxFit.cover, image: NetworkImage(url)),
-                          borderRadius: const BorderRadius.only(
-                            topLeft:
-                                Radius.circular(defaultBorderRadiusCircular),
-                            topRight:
-                                Radius.circular(defaultBorderRadiusCircular),
-                          )),
-                    ),
-                  ),
-                  Expanded(
-                      flex: 2,
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 4.w),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              label,
-                              style: TextStyle(
-                                  fontSize: 12.sp, fontWeight: FontWeight.bold),
-                            ),
-                            Text(
-                              "${price}TL",
-                              style: TextStyle(fontSize: 11.sp),
-                            )
-                          ],
-                        ),
-                      )),
-                ],
-              ),
-            ),
-            Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: defaultPadding / 3,
-                      vertical: defaultPadding / 4),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        height: 6.w,
-                        width: 12.w,
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const ProductDetail(),
+            ));
+      },
+      child: Container(
+        padding: EdgeInsets.only(bottom: 2.h),
+        decoration: BoxDecoration(boxShadow: [
+          BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              spreadRadius: 2,
+              blurRadius: 50)
+        ]),
+        margin: EdgeInsets.only(right: 5.w),
+        child: AspectRatio(
+          aspectRatio: 1.5,
+          child: Stack(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius:
+                        BorderRadius.circular(defaultBorderRadiusCircular)),
+                child: Column(
+                  children: [
+                    Expanded(
+                      flex: 5,
+                      child: Container(
                         decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(
-                                defaultBorderRadiusCircular * 0.8)),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Icon(
-                              Icons.star,
-                              color: Colors.orange,
-                              size: 11.sp,
-                            ),
-                            Text(
-                              "4.8",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 9.sp),
-                            )
-                          ],
-                        ),
+                            image: DecorationImage(
+                                fit: BoxFit.cover, image: NetworkImage(url)),
+                            borderRadius: const BorderRadius.only(
+                              topLeft:
+                                  Radius.circular(defaultBorderRadiusCircular),
+                              topRight:
+                                  Radius.circular(defaultBorderRadiusCircular),
+                            )),
                       ),
-                      Container(
-                        height: 8.w,
-                        width: 8.w,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(100)),
-                        child: Icon(
-                          Icons.favorite,
-                          color: Colors.pink,
-                          size: 16.sp,
+                    ),
+                    Expanded(
+                        flex: 2,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 4.w),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                label,
+                                style: TextStyle(
+                                    fontSize: 12.sp,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                "${price}TL",
+                                style: TextStyle(fontSize: 11.sp),
+                              )
+                            ],
+                          ),
+                        )),
+                  ],
+                ),
+              ),
+              Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: defaultPadding / 3,
+                        vertical: defaultPadding / 4),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          height: 6.w,
+                          width: 12.w,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(
+                                  defaultBorderRadiusCircular * 0.8)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Icon(
+                                Icons.star,
+                                color: Colors.orange,
+                                size: 11.sp,
+                              ),
+                              Text(
+                                "4.8",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 9.sp),
+                              )
+                            ],
+                          ),
                         ),
-                      )
-                    ],
-                  ),
-                )
-              ],
-            )
-          ],
+                        Container(
+                          height: 8.w,
+                          width: 8.w,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(100)),
+                          child: Icon(
+                            Icons.favorite,
+                            color: Colors.pink,
+                            size: 16.sp,
+                          ),
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -247,6 +264,7 @@ class _CategoryIconWidget extends StatelessWidget {
               ),
             ),
           ),
+          const SizedBox(height: 10),
           Text(label)
         ],
       ),
@@ -268,7 +286,7 @@ class _CategoriesSection extends StatelessWidget {
           children: [
             Text(
               "Categories",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.sp),
+              style: TextStyle(fontWeight: FontWeight.w500, fontSize: 14.sp),
             ),
             Text(
               "See All",
@@ -295,7 +313,7 @@ class _FeaturedProductsSection extends StatelessWidget {
           children: [
             Text(
               "Featured Products",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.sp),
+              style: TextStyle(fontWeight: FontWeight.w500, fontSize: 14.sp),
             ),
             Text(
               "See All",
@@ -308,26 +326,32 @@ class _FeaturedProductsSection extends StatelessWidget {
   }
 }
 
-class _AdSection extends StatelessWidget {
+class _AdSection extends StatefulWidget {
   const _AdSection();
+
+  @override
+  State<_AdSection> createState() => _AdSectionState();
+}
+
+class _AdSectionState extends State<_AdSection> {
+  int activeIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: Column(
         children: [
-          AspectRatio(
-            aspectRatio: 5 / 2,
-            child: Container(
-              width: double.infinity,
-              margin: const EdgeInsets.only(
-                  left: defaultPadding,
-                  right: defaultPadding,
-                  bottom: defaultPadding / 2),
-              decoration: BoxDecoration(
-                  color: themeTextColor,
-                  borderRadius:
-                      BorderRadius.circular(defaultBorderRadiusCircular * 2)),
+          SizedBox(
+            height: 25.h,
+            child: PageView.builder(
+              onPageChanged: (value) => {
+                setState(() {
+                  activeIndex = value;
+                })
+              },
+              itemCount: 4,
+              itemBuilder: (context, index) =>
+                  const _AdCard(color: secondaryColor),
             ),
           ),
           Wrap(
@@ -339,33 +363,65 @@ class _AdSection extends StatelessWidget {
                 width: 3.w,
                 height: 3.w,
                 decoration: BoxDecoration(
-                    color: primaryColor,
+                    color: activeIndex == 0
+                        ? primaryColor
+                        : Colors.grey.withAlpha(100),
                     borderRadius: BorderRadius.circular(50)),
               ),
               Container(
                 width: 3.w,
                 height: 3.w,
                 decoration: BoxDecoration(
-                    color: Colors.grey.withAlpha(100),
+                    color: activeIndex == 1
+                        ? primaryColor
+                        : Colors.grey.withAlpha(100),
                     borderRadius: BorderRadius.circular(50)),
               ),
               Container(
                 width: 3.w,
                 height: 3.w,
                 decoration: BoxDecoration(
-                    color: Colors.grey.withAlpha(100),
+                    color: activeIndex == 2
+                        ? primaryColor
+                        : Colors.grey.withAlpha(100),
                     borderRadius: BorderRadius.circular(50)),
               ),
               Container(
                 width: 3.w,
                 height: 3.w,
                 decoration: BoxDecoration(
-                    color: Colors.grey.withAlpha(100),
+                    color: activeIndex == 3
+                        ? primaryColor
+                        : Colors.grey.withAlpha(100),
                     borderRadius: BorderRadius.circular(50)),
               ),
             ],
           )
         ],
+      ),
+    );
+  }
+}
+
+class _AdCard extends StatelessWidget {
+  const _AdCard({
+    required this.color,
+  });
+  final Color color;
+  @override
+  Widget build(BuildContext context) {
+    return AspectRatio(
+      aspectRatio: 5 / 2,
+      child: Container(
+        width: double.infinity,
+        margin: const EdgeInsets.only(
+            left: defaultPadding,
+            right: defaultPadding,
+            bottom: defaultPadding / 2),
+        decoration: BoxDecoration(
+            color: color,
+            borderRadius:
+                BorderRadius.circular(defaultBorderRadiusCircular * 2)),
       ),
     );
   }
@@ -385,7 +441,7 @@ class _SpecialOffersSection extends StatelessWidget {
           children: [
             Text(
               "Special Offers",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.sp),
+              style: TextStyle(fontWeight: FontWeight.w500, fontSize: 14.sp),
             ),
             Text(
               "See All",
@@ -472,17 +528,19 @@ class _SearchAndFilter extends StatelessWidget {
           SizedBox(
             width: 2.w,
           ),
-          AspectRatio(
-            aspectRatio: 1,
-            child: Container(
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius:
-                      BorderRadius.circular(defaultBorderRadiusCircular)),
-              width: 5.w,
-              child: Icon(
-                Icons.filter_alt,
-                size: 18.sp,
+          Padding(
+            padding: EdgeInsets.all(0.5.w),
+            child: AspectRatio(
+              aspectRatio: 1,
+              child: Container(
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius:
+                        BorderRadius.circular(defaultBorderRadiusCircular)),
+                child: Icon(
+                  Icons.tune,
+                  size: 18.sp,
+                ),
               ),
             ),
           )
@@ -546,7 +604,7 @@ class _LeftSection extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text("Location",
-            style: TextStyle(fontSize: 9.sp, color: themeTextColor)),
+            style: TextStyle(fontSize: 10.sp, color: themeTextColor)),
         const _DropDown()
       ],
     );
