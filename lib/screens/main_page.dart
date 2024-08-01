@@ -8,53 +8,58 @@ class MainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.pink,
+    return const Scaffold(
       body: Stack(
-        children: [
-          const HomePage(),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              height: 10.h,
-              decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(defaultBorderRadiusCircular),
-                      topRight: Radius.circular(defaultBorderRadiusCircular))),
-              child: const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  _NavbarIcon(
-                    label: "Home",
-                    icon: Icons.home,
-                    isActive: true,
-                  ),
-                  _NavbarIcon(
-                    label: "Explore",
-                    icon: Icons.location_on,
-                    isActive: false,
-                  ),
-                  _NavbarIcon(
-                    label: "Favorite",
-                    icon: Icons.favorite,
-                    isActive: false,
-                  ),
-                  _NavbarIcon(
-                    label: "Chat",
-                    icon: Icons.chat,
-                    isActive: false,
-                  ),
-                  _NavbarIcon(
-                    label: "Profile",
-                    icon: Icons.person,
-                    isActive: false,
-                  ),
-                ],
-              ),
+        children: [HomePage(), _Navbar()],
+      ),
+    );
+  }
+}
+
+class _Navbar extends StatelessWidget {
+  const _Navbar();
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: Container(
+        height: 10.h,
+        decoration: const BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(defaultBorderRadiusCircular),
+                topRight: Radius.circular(defaultBorderRadiusCircular))),
+        child: const Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            _NavbarIcon(
+              label: "Home",
+              icon: Icons.home,
+              isActive: true,
             ),
-          )
-        ],
+            _NavbarIcon(
+              label: "Explore",
+              icon: Icons.location_on,
+              isActive: false,
+            ),
+            _NavbarIcon(
+              label: "Favorite",
+              icon: Icons.favorite,
+              isActive: false,
+            ),
+            _NavbarIcon(
+              label: "Chat",
+              icon: Icons.chat,
+              isActive: false,
+            ),
+            _NavbarIcon(
+              label: "Profile",
+              icon: Icons.person,
+              isActive: false,
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -97,12 +102,11 @@ class _NavbarIcon extends StatelessWidget {
           height: 4,
         ),
         Text(label,
-            style: TextStyle(
-              fontSize: 9.sp,
-              color: isActive
-                  ? primaryColor.withOpacity(0.8)
-                  : Colors.blueGrey[300]!,
-            ))
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                  color: isActive
+                      ? primaryColor.withOpacity(0.8)
+                      : Colors.blueGrey[300]!,
+                ))
       ],
     );
   }

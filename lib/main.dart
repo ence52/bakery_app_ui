@@ -1,4 +1,4 @@
-import 'package:bakery_app_ui/screens/main_page.dart';
+import 'package:bakery_app_ui/screens/orders_page.dart';
 import 'package:bakery_app_ui/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'Sizer',
           theme: themeData,
-          home: const MainPage(),
+          home: const OrdersPage(),
         );
       },
     );

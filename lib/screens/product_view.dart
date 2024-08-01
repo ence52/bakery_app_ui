@@ -22,34 +22,31 @@ class ProductDetail extends StatelessWidget {
                     SizedBox(
                       height: 1.5.h,
                     ),
-                    Text(
-                      "Chocolate Cake",
-                      style: TextStyle(
-                          fontSize: 11.sp,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500),
-                    ),
+                    const _TitleSection(),
                     SizedBox(
                       height: 1.5.h,
                     ),
                     Text(
                       "Seller",
-                      style: TextStyle(fontSize: 9.sp, color: Colors.black),
+                      style: Theme.of(context).textTheme.bodyMedium!,
                     ),
                     const _SellerSection(),
                     Text(
                       "Description",
-                      style: TextStyle(
-                          fontSize: 11.sp,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500),
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleLarge!
+                          .copyWith(fontWeight: FontWeight.w600),
                     ),
                     SizedBox(
                       height: 1.h,
                     ),
                     Text(
                       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-                      style: TextStyle(fontSize: 8.5.sp, color: Colors.grey),
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyLarge!
+                          .copyWith(color: Colors.grey),
                     ),
                     SizedBox(
                       height: 0.5.h,
@@ -60,10 +57,10 @@ class ProductDetail extends StatelessWidget {
                     ),
                     Text(
                       "Select Weight",
-                      style: TextStyle(
-                          fontSize: 11.sp,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500),
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleLarge!
+                          .copyWith(fontWeight: FontWeight.w600),
                     ),
                     SizedBox(
                       height: 0.5.h,
@@ -85,41 +82,62 @@ class ProductDetail extends StatelessWidget {
   }
 }
 
+class _TitleSection extends StatelessWidget {
+  const _TitleSection();
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      "Chocolate Cake",
+      style: Theme.of(context)
+          .textTheme
+          .headlineSmall!
+          .copyWith(fontWeight: FontWeight.w600),
+    );
+  }
+}
+
 class _Buttons extends StatelessWidget {
   const _Buttons();
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        height: 5.h,
-        padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
-        margin: const EdgeInsets.only(top: defaultPadding * 1.5),
-        child: const Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            _CustomIconButton(
-              icon: Icons.arrow_back,
-            ),
-            Row(
-              children: [
-                _CustomIconButton(
-                  icon: Icons.favorite_border_outlined,
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                _CustomIconButton(
-                  icon: Icons.share_outlined,
-                ),
-              ],
-            )
-          ],
-        ));
+    return InkWell(
+      onTap: () {
+        Navigator.pop(context);
+      },
+      child: Container(
+          height: 5.h,
+          padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
+          margin: const EdgeInsets.only(top: defaultPadding * 1.5),
+          child: const Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              CustomIconButton(
+                icon: Icons.arrow_back,
+              ),
+              Row(
+                children: [
+                  CustomIconButton(
+                    icon: Icons.favorite_border_outlined,
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  CustomIconButton(
+                    icon: Icons.share_outlined,
+                  ),
+                ],
+              )
+            ],
+          )),
+    );
   }
 }
 
-class _CustomIconButton extends StatelessWidget {
-  const _CustomIconButton({
+class CustomIconButton extends StatelessWidget {
+  const CustomIconButton({
+    super.key,
     required this.icon,
   });
   final IconData icon;
@@ -203,17 +221,24 @@ class _AddToCartSection extends StatelessWidget {
                   children: [
                     Text(
                       "Total Price",
-                      style: TextStyle(color: Colors.grey, fontSize: 11.sp),
+                      style: Theme.of(context)
+                          .textTheme
+                          .headlineSmall!
+                          .copyWith(
+                              fontWeight: FontWeight.w300,
+                              color: Colors.grey,
+                              fontSize: 11.sp),
                     ),
                     const SizedBox(
                       height: 5,
                     ),
                     Text(
                       "\$25.00",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 10.sp,
-                          fontWeight: FontWeight.bold),
+                      style: Theme.of(context)
+                          .textTheme
+                          .headlineSmall!
+                          .copyWith(
+                              fontSize: 10.sp, fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
@@ -238,10 +263,10 @@ class _AddToCartSection extends StatelessWidget {
                       ),
                       Text(
                         "Add To Cart",
-                        style: TextStyle(
-                            fontSize: 10.sp,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500),
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleLarge!
+                            .copyWith(color: Colors.white),
                       )
                     ],
                   )),
@@ -278,10 +303,10 @@ class _AttributeButton extends StatelessWidget {
         child: Center(
             child: Text(
           label,
-          style: TextStyle(
-              fontSize: 9.sp,
-              fontWeight: FontWeight.w500,
-              color: isActive ? Colors.white : Colors.black),
+          style: Theme.of(context)
+              .textTheme
+              .bodyLarge!
+              .copyWith(color: isActive ? Colors.white : Colors.black),
         )),
       ),
     );
@@ -377,7 +402,7 @@ class _NameAndRatingSection extends StatelessWidget {
       children: [
         Text(
           "Cake",
-          style: TextStyle(fontSize: 11.sp, color: Colors.grey),
+          style: Theme.of(context).textTheme.titleLarge!,
         ),
         Row(
           children: [
@@ -390,7 +415,8 @@ class _NameAndRatingSection extends StatelessWidget {
             ),
             Text(
               "4.9",
-              style: TextStyle(fontSize: 10.sp, color: Colors.grey[600]),
+              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                  fontWeight: FontWeight.w600, color: Colors.grey[600]),
             )
           ],
         )

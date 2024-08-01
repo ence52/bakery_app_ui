@@ -1,9 +1,11 @@
 import 'package:bakery_app_ui/utils/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 
 ThemeData themeData = ThemeData(
   scaffoldBackgroundColor: Colors.white,
+  textTheme: GoogleFonts.montserratTextTheme(),
   useMaterial3: false,
   iconTheme: const IconThemeData(color: primaryColor),
   inputDecorationTheme: InputDecorationTheme(

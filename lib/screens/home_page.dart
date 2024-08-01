@@ -131,13 +131,14 @@ class _ProductCard extends StatelessWidget {
                             children: [
                               Text(
                                 label,
-                                style: TextStyle(
-                                    fontSize: 12.sp,
-                                    fontWeight: FontWeight.bold),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleLarge!
+                                    .copyWith(fontWeight: FontWeight.w600),
                               ),
                               Text(
-                                "${price}TL",
-                                style: TextStyle(fontSize: 11.sp),
+                                "$price\$",
+                                style: Theme.of(context).textTheme.titleMedium,
                               )
                             ],
                           ),
@@ -286,11 +287,17 @@ class _CategoriesSection extends StatelessWidget {
           children: [
             Text(
               "Categories",
-              style: TextStyle(fontWeight: FontWeight.w500, fontSize: 14.sp),
+              style: Theme.of(context)
+                  .textTheme
+                  .headlineSmall!
+                  .copyWith(fontWeight: FontWeight.bold),
             ),
             Text(
               "See All",
-              style: TextStyle(fontSize: 10.sp, color: primaryColor),
+              style: Theme.of(context)
+                  .textTheme
+                  .titleMedium!
+                  .copyWith(color: primaryColor),
             )
           ],
         ),
@@ -313,11 +320,17 @@ class _FeaturedProductsSection extends StatelessWidget {
           children: [
             Text(
               "Featured Products",
-              style: TextStyle(fontWeight: FontWeight.w500, fontSize: 14.sp),
+              style: Theme.of(context)
+                  .textTheme
+                  .headlineSmall!
+                  .copyWith(fontWeight: FontWeight.bold),
             ),
             Text(
               "See All",
-              style: TextStyle(fontSize: 10.sp, color: primaryColor),
+              style: Theme.of(context)
+                  .textTheme
+                  .titleMedium!
+                  .copyWith(color: primaryColor),
             )
           ],
         ),
@@ -441,7 +454,10 @@ class _SpecialOffersSection extends StatelessWidget {
           children: [
             Text(
               "Special Offers",
-              style: TextStyle(fontWeight: FontWeight.w500, fontSize: 14.sp),
+              style: Theme.of(context)
+                  .textTheme
+                  .headlineSmall!
+                  .copyWith(fontWeight: FontWeight.bold),
             ),
             Text(
               "See All",
