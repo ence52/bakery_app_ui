@@ -34,9 +34,12 @@ class OrdersPage extends StatelessWidget {
             borderRadius: BorderRadius.circular(30),
             border:
                 Border.all(color: Colors.grey.withOpacity(0.5), width: 1.5)),
-        child: const Icon(
-          Icons.arrow_back,
-          color: Colors.black,
+        child: IconButton(
+          onPressed: () => Navigator.pop(context),
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.black,
+          ),
         ),
       ),
       elevation: 0,
